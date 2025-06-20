@@ -1,0 +1,15 @@
+[package]
+name = "witcomponents_native"
+version = "0.1.0"
+authors = []
+edition = "2021"
+
+[lib]
+name = "witcomponents_native"
+crate-type = ["cdylib"]
+
+[dependencies]
+rustler = {version = "0.36.2", features = ["serde", "nif_version_2_16"]}
+serde_json = "1.0.140"
+wit-component = "0.235.0"
+wit-parser = "0.235.0"

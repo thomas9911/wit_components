@@ -16,9 +16,9 @@ jobs:
       matrix:
         nif: ["2.16"]
         job:
-          - { target: arm-unknown-linux-gnueabihf , os: ubuntu-24.04-arm }
-          - { target: aarch64-unknown-linux-gnu   , os: ubuntu-24.04-arm }
-          - { target: aarch64-unknown-linux-musl  , os: ubuntu-24.04-arm }
+          - { target: arm-unknown-linux-gnueabihf , os: ubuntu-24.04 , use-cross: true }
+          - { target: aarch64-unknown-linux-gnu   , os: ubuntu-24.04 , use-cross: true }
+          - { target: aarch64-unknown-linux-musl  , os: ubuntu-24.04 , use-cross: true }
           - { target: aarch64-apple-darwin        , os: macos-15      }
           - { target: riscv64gc-unknown-linux-gnu , os: ubuntu-24.04 , use-cross: true }
           - { target: x86_64-apple-darwin         , os: macos-13      }
@@ -29,7 +29,7 @@ jobs:
 
     steps:
     - name: Checkout source code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Extract project version
       shell: bash
@@ -55,7 +55,7 @@ jobs:
         project-dir: "native/witcomponents_native"
 
     - name: Artifact upload
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ${{ steps.build-crate.outputs.file-name }}
         path: ${{ steps.build-crate.outputs.file-path }}
